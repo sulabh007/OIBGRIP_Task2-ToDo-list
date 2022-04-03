@@ -112,7 +112,7 @@ h2{
     position: relative;
     top: -12%;
 }
-#not_comp,#comp{
+.not_comp,.comp{
     height: 160px;
     width: 300px;
     margin-left: 30px;
@@ -141,9 +141,11 @@ p{
     align-self: flex-end;
     position: relative;
     top: 74%;
+    display: none;
+    width: 100%;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    display:flex;
+    
     justify-content: center;
 }
 .bttn_delete, .bttn_edit{

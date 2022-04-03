@@ -9,37 +9,29 @@ document.addEventListener('DOMContentLoaded', function(){
 function load_task(){
     document.getElementById('Add_to-do').style.display='none';
     document.getElementById('edit_to-do').style.display = 'none';
-    
+    document.getElementById('task-detail').style.display = 'none';
     
     var info = localStorage.getItem("todo");
     var parsedobj =[];
     if (info !== null) {
         parsedobj = JSON.parse(info);
-        
     }
-    else{
-        document.getElementById('task-detail').style.display = 'none';
-        document.getElementById('not_comp').style.display = 'none';
-        document.getElementById('comp').style.display = 'none';
-        return 0;
-    }
-    document.getElementById('not_comp').style.display = 'block';
-    document.getElementById('comp').style.display = 'block';
+   
     console.log(parsedobj.length, parsedobj);
     for(let i=0;i<parsedobj.length;i++){
         console.log(parsedobj[i]);
         if(parsedobj[i]!==null){
-            task_details(i);
+            
             const task = document.createElement('div');
             task.className = 'tasks';
             task.innerHTML = `<span class='list_name'>${parsedobj[i].Task}</span>
                             <span class='list_type'>${parsedobj[i].type}</span>
                             <span class='list_time'>${parsedobj[i].CreatedAt}</span>`;
             if (!parsedobj[i].completed) {  
-                document.querySelector('#not_comp').appendChild(task);
+                document.querySelector('.not_comp').appendChild(task);
             }   
             else{ 
-                document.querySelector('#comp').appendChild(task);  
+                document.querySelector('.comp').appendChild(task);  
             }
             task.addEventListener('click', () => task_details(i));
             console.log(parsedobj[i].type);
@@ -91,9 +83,9 @@ function create_inp(){
         console.log(task_dic, to_do_arr.length);
         to_do_arr.push(task_dic);
         localStorage.setItem("todo", JSON.stringify(to_do_arr));
-    
+        task_details(to_do_arr.length-1)
         location.reload();
-        load_task(i);
+        
         
         return false;
     })
@@ -106,6 +98,8 @@ function task_details(i){
     document.getElementById('Add_to-do').style.display = 'none';
     document.getElementById('task-detail').style.display = 'block';
     document.getElementById('edit_to-do').style.display = 'none';
+
+    document.querySelector('.button-set').style.display = 'flex';
     
     var info = localStorage.getItem("todo");
     var parsedobj = [];
@@ -119,13 +113,14 @@ function task_details(i){
     console.log(i, parsedobj[i].Deadline);
     var deadline = `${parsedobj[i].Deadline.split('T')[0]} ${parsedobj[i].Deadline.split('T')[1]}`;
     console.log(deadline);
-    if(deadline===undefined){
-        deadline="None";
+    if (parsedobj[i].Deadline==""){
+        deadline="None"
     }
     const task = document.querySelector(".task")
     task.innerHTML = `<p class='task_name'><b>${parsedobj[i].Task}</b></p>
                     <p class='task_deadline'><span class="task_dets">Deadline: </span>${deadline}</p>
                     <p class='task_details'>${(parsedobj[i].Details !== undefined) ? parsedobj[i].Details : ""}</p>
+                    <p class='task_type'>${parsedobj[i].type}</p>
                     <p class='task_time'>${parsedobj[i].CreatedAt}</p>
                     <p class='task_time'>${parsedobj[i].Date}</p>
                     <p class='task_time'>${parsedobj[i].Day}</p>`;
@@ -139,7 +134,7 @@ function task_details(i){
     if(parsedobj[i].completed){
         document.querySelector(".bttn_edit").style.display="none";
     }
-
+   
     document.querySelector(".Done").addEventListener('click', () => {
         task_completed(i);
     });
@@ -187,7 +182,7 @@ function delete_task(i){
     delete task[i];
     localStorage.setItem("todo", JSON.stringify(task));
     location.reload();
-    load_task(i);
+    load_task();
 }
 
 function task_completed(i) {
