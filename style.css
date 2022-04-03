@@ -112,7 +112,7 @@ h2{
     position: relative;
     top: -12%;
 }
-.not_comp,.comp{
+#not_comp,#comp{
     height: 160px;
     width: 300px;
     margin-left: 30px;

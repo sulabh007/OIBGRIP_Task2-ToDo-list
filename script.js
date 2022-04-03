@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    document.getElementById('task-detail').style.display = 'none';
+    
     load_task();
     document.querySelector('#create1').addEventListener('click', function () {
         create_inp();
@@ -15,8 +15,16 @@ function load_task(){
     var parsedobj =[];
     if (info !== null) {
         parsedobj = JSON.parse(info);
+        
     }
-    
+    else{
+        document.getElementById('task-detail').style.display = 'none';
+        document.getElementById('not_comp').style.display = 'none';
+        document.getElementById('comp').style.display = 'none';
+        return 0;
+    }
+    document.getElementById('not_comp').style.display = 'block';
+    document.getElementById('comp').style.display = 'block';
     console.log(parsedobj.length, parsedobj);
     for(let i=0;i<parsedobj.length;i++){
         console.log(parsedobj[i]);
@@ -28,10 +36,10 @@ function load_task(){
                             <span class='list_type'>${parsedobj[i].type}</span>
                             <span class='list_time'>${parsedobj[i].CreatedAt}</span>`;
             if (!parsedobj[i].completed) {  
-                document.querySelector('.not_comp').appendChild(task);
+                document.querySelector('#not_comp').appendChild(task);
             }   
             else{ 
-                document.querySelector('.comp').appendChild(task);  
+                document.querySelector('#comp').appendChild(task);  
             }
             task.addEventListener('click', () => task_details(i));
             console.log(parsedobj[i].type);
@@ -111,8 +119,8 @@ function task_details(i){
     console.log(i, parsedobj[i].Deadline);
     var deadline = `${parsedobj[i].Deadline.split('T')[0]} ${parsedobj[i].Deadline.split('T')[1]}`;
     console.log(deadline);
-    if(deadline!==undefined){
-        deadline="None"
+    if(deadline===undefined){
+        deadline="None";
     }
     const task = document.querySelector(".task")
     task.innerHTML = `<p class='task_name'><b>${parsedobj[i].Task}</b></p>
@@ -131,10 +139,6 @@ function task_details(i){
     if(parsedobj[i].completed){
         document.querySelector(".bttn_edit").style.display="none";
     }
-    /*const btton_pair2 = document.createElement('button');
-    btton_pair2.setAttribute("class", "bttn_delete");
-    btton_pair2.textContent = "Delete Task";
-    document.querySelector('.button-set').appendChild(btton_pair2);*/
 
     document.querySelector(".Done").addEventListener('click', () => {
         task_completed(i);
