@@ -4,14 +4,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="images/edit-icon.png">
         <title>To Do List</title>
         <script src="script.js"></script>
     </head>
     <body>
         <main>
             <div class="box" id="to-do-list">
-                <h1>Task</h1>    
-                
+                <div class="heading">
+                    <h1>Task</h1>
+                    <button class="delete-all">Delete All</button>
+                </div>
                 <div class="not_comp">
                     <h2>Pending</h2>
                 </div>
@@ -33,7 +36,7 @@
                         <option value="work">work</option>
                         <option value="grocery">grocery list</option>
                     </datalist>
-                    <button class="submit" id="submit1" type="button">Submit</button>            
+                    <button class="submit" id="edit-submit" type="button">Submit</button>            
                 </form>
             </div>
             <div class="box" id="Add_to-do">
@@ -49,7 +52,7 @@
                         <option value="work">work</option>
                         <option value="grocery">grocery list</option>
                     </datalist>
-                    <button class="submit" id="submit" type="button">Submit</button> 
+                    <button class="submit" id="task-submit" type="button">Submit</button> 
                 </form>
             </div>
             
@@ -63,8 +66,8 @@
                     
                 </div>
                 <div class="button-set">
-                    <button class="bttn_edit">Edit Task</button>
-                    <button class="bttn_delete">Delete Task</button>
+                    <button id="bttn_edit">Edit Task</button>
+                    <button id="bttn_delete">Delete Task</button>
                 </div>
             </div>     
         </main>

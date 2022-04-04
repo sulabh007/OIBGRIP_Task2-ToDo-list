@@ -1,26 +1,48 @@
+@media (max-width:767px){
+    main{
+        flex-direction: column;
+        height: 100%;
+    }
+    .box{
+        min-height: 500px;
+    }
+}
+
 body{
     color: white;
     font-family: sans-serif;
+    background-image: url('images/3N5seHR-cool-design-backgrounds.jpg');
+    background-repeat: no-repeat;
+    background-size:auto;
 }
 main{
+    position:absolute;
+    top: 50%;
+    gap: 40px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+main, .box ,.heading, form, .tasks{
     display: flex;
 }
+
 .box{
     width: 350px;
     height: 500px;
     background: #161616;
-    display: flex;
-    margin-left: 40px;
     border-radius: 12px;
     flex-direction: column;
 }
 form{
     width: 300px;
-    margin-left: 20px;
-    display: flex;
     flex-direction: column;
     background: #252525;
     border-radius: 6px;
+}
+
+.name, .task_name, .type{
+    text-align: center;
 }
 .name{
     width: 200px;
@@ -29,15 +51,16 @@ form{
     background-color: #505050;
     border: none;
     align-self: center;
-    text-align: center;
+    
 }
 button{
     border: none;
-    background: #424242;
+    width: 45%;
+    height: 100%;
+    background: transparent;
     align-self: flex-end;
 }
 input{
-    background: #424242;
     color: whitesmoke;
     border: none;
     width: 200px;
@@ -55,14 +78,10 @@ input{
     height: 70px;
     align-self: end;
     margin-right: 10px;
-    background: #424242;
 }
-.not-com-task{
-    background: chocolate;
-}
-.task_name{
+
+.task_name, #create1{
     font-size: 30px;
-    text-align: center;
 }
 .task_time{
     text-align: end;
@@ -70,7 +89,6 @@ input{
     color:#505050;
 }
 .tasks{
-    display: flex;
     justify-content: space-between;
     align-items: center;
     height: 30px;
@@ -78,8 +96,8 @@ input{
     margin-left: 20px;
     box-sizing: border-box;
 }
-h1{
-    margin-left: 20px;
+h1,form {
+    margin-left: 25px;
 }
 h2{
     font-size: 20px;
@@ -89,21 +107,18 @@ h2{
     font-size: 18px;
 }
 
-.tasks:active{
+.tasks:active, #create1,.submit, .details, input{
     background: #424242;
 }
 .type{
-        width: 70px;
-    text-align: center;
+    width: 70px;
     height: 35px;
     margin: 0 10px;
 }
 .list_time{
     text-align: end;
-    
-    color: gray;
 }
-.list_type, .task_dets{
+.list_type, .task_dets, .list_time{
     color: gray;
 }
 .task{
@@ -123,13 +138,10 @@ p{
     margin-left: 10px;
 }
 .heading{
-    display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
 .Done{
-    height: 50px;
     width: 100px;
     color: #0074e0;
     background: transparent;
@@ -137,36 +149,37 @@ p{
 }
 .button-set{
     background: #252525;
-    height: 50px;
     align-self: flex-end;
     position: relative;
     top: 74%;
     display: none;
+    height: 50px;
     width: 100%;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    
     justify-content: center;
 }
-.bttn_delete, .bttn_edit{
-    width: 45%;
-    height: 100%;
-    background: transparent;
+#bttn_delete, #bttn_edit{
     color: cyan;
 }
+
+#create1, .submit{
+    margin-right: 20px;
+}
+
 #create1{
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    font-size: 30px;
-    margin-right: 20px;
 }
 
 .submit{
     margin-bottom: 20px;
     width: 75px;
-    margin-right: 20px;
     height: 40px;
     border-radius: 20px;
 }
 
+.delete-all{
+    color: red;
+}
