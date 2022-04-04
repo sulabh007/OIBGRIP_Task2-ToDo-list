@@ -141,10 +141,6 @@ function task_details(i){
     btton.textContent = !(parsedobj[i].completed) ? "Mark as Done" : "Restore Task";
     
     
-
-    if(parsedobj[i].completed){
-        document.querySelector("#bttn_edit").style.display="none";
-    }
    
     document.querySelector(".Done").addEventListener('click', () => {
         task_completed(i);
